@@ -2,7 +2,6 @@ package com.shervinzadsoroor.repositories.interfaces;
 
 import com.shervinzadsoroor.models.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface AccountRepository {
@@ -15,4 +14,6 @@ public interface AccountRepository {
     void delete(Long accountId);
 
     List<Account> findAll(Long CostumerId);
+
+    void deactivate(Long accountId);
 }

@@ -31,4 +31,9 @@ public class AccountRepositoryImpl implements AccountRepository {
     public List<Account> findAll(Long CostumerId) {
         return null;
     }
+
+    @Override
+    public void deactivate(Long accountId) {
+
+    }
 }

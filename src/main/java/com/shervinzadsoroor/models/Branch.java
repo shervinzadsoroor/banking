@@ -23,7 +23,7 @@ public class Branch implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
-    private List<Account> accounts = new ArrayList<>(); // one to many
+    private List<Costumer> costumers = new ArrayList<>(); // one to many
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "branch")
     private List<Employee> employees = new ArrayList<>(); //one to many
@@ -47,12 +47,12 @@ public class Branch implements Serializable {
         this.name = name;
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
+    public List<Costumer> getCostumers() {
+        return costumers;
     }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public void setCostumers(List<Costumer> costumers) {
+        this.costumers = costumers;
     }
 
     public List<Employee> getEmployees() {

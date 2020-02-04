@@ -29,6 +29,9 @@ public class Costumer implements Serializable {
     @Column
     private String nationalCode;
 
+    @ManyToOne
+    private Branch branch;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "costumer")
     private List<Account> accounts = new ArrayList<>();  // one to many
 
@@ -62,6 +65,14 @@ public class Costumer implements Serializable {
 
     public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public List<Account> getAccounts() {

@@ -25,11 +25,12 @@ public class Account implements Serializable {
     @Column
     private boolean isActive;
 
+    @Column
+    private int numOfWrongPassEntered;
+
     @ManyToOne
     private Costumer costumer; //many to one
 
-    @ManyToOne
-    private Branch branch; // many to one
 
     @OneToOne(cascade = CascadeType.ALL)
     private CreditCard creditCard; // one to one
@@ -46,6 +47,7 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+
     public Long getBalance() {
         return balance;
     }
@@ -54,12 +56,21 @@ public class Account implements Serializable {
         this.balance = balance;
     }
 
+
     public boolean isActive() {
         return isActive;
     }
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public int getNumOfWrongPassEntered() {
+        return numOfWrongPassEntered;
+    }
+
+    public void setNumOfWrongPassEntered(int numOfWrongPassEntered) {
+        this.numOfWrongPassEntered = numOfWrongPassEntered;
     }
 
     public Costumer getCostumer() {
@@ -70,13 +81,6 @@ public class Account implements Serializable {
         this.costumer = costumer;
     }
 
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
 
     public CreditCard getCreditCard() {
         return creditCard;
@@ -86,6 +90,7 @@ public class Account implements Serializable {
         this.creditCard = creditCard;
     }
 
+
     public List<Transaction> getTransactions() {
         return transactions;
     }
@@ -94,12 +99,14 @@ public class Account implements Serializable {
         this.transactions = transactions;
     }
 
+
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
                 ", balance=" + balance +
                 ", isActive=" + isActive +
+                ", numOfWrongPassEntered=" + numOfWrongPassEntered +
                 '}';
     }
 }
