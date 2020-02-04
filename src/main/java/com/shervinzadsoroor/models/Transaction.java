@@ -8,9 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class Transaction implements Serializable {
     @Id
@@ -35,6 +35,9 @@ public class Transaction implements Serializable {
 
     @ManyToOne
     private Account account; // many to one
+
+    public Transaction() {
+    }
 
     public Long getId() {
         return id;

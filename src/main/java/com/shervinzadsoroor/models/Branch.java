@@ -3,15 +3,16 @@ package com.shervinzadsoroor.models;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.config.ListFactoryBean;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class Branch implements Serializable {
     @Id
@@ -30,6 +31,26 @@ public class Branch implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Manager manager; // one to one
+
+
+    public Branch() {
+    }
+
+    public Branch(Manager manager, List<Employee> employees, List<Costumer> costumers) {
+        this.manager = manager;
+        this.employees = employees;
+        this.costumers = costumers;
+    }
+
+    public Branch(Manager manager) {
+        this.manager = manager;
+    }
+
+    public Branch(Manager manager, List<Employee> employees) {
+        this.manager = manager;
+        this.employees = employees;
+    }
+
 
     public Long getId() {
         return id;

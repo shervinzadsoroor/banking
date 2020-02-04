@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class Employee implements Serializable {
     @Id
@@ -28,6 +28,9 @@ public class Employee implements Serializable {
 
     @ManyToOne
     private Manager manager; // many to one
+
+    public Employee() {
+    }
 
     public Long getId() {
         return id;

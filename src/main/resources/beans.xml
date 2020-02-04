@@ -5,20 +5,25 @@
 
     <bean id="branch1" class="com.shervinzadsoroor.models.Branch">
         <property name="name" value="azadi"/>
-        <property name="manager" ref="manager1"/>
+        <!--        <property name="manager" ref="manager1"/>-->
+        <constructor-arg ref="manager1"/>
         <property name="employees" ref="employees1"/>
+        <!--        <constructor-arg ref="employees1"/>-->
+        <!--        <property name="costumers" ref="costumers1"/>-->
+        <!--                <constructor-arg ref="costumers1"/>-->
         <property name="costumers" ref="costumers1"/>
     </bean>
     <util:list id="costumers1" value-type="com.shervinzadsoroor.models.Costumer">
-        <value>costumer1ofBranch1</value>
-        <value>costumer2ofBranch1</value>
+        <ref bean="costumer1ofBranch1"/>
+        <ref bean="costumer2ofBranch1"/>
     </util:list>
 
     <bean id="manager1" class="com.shervinzadsoroor.models.Manager">
         <property name="firstName" value="ali"/>
         <property name="lastName" value="rahmani"/>
-        <property name="branch" ref="branch1"/>
-        <property name="employees" ref="employees1"/>
+        <!--        <property name="branch" ref="branch1"/>-->
+        <!--        <constructor-arg ref="branch1"/>-->
+        <!--        <property name="employees" ref="employees1"/>-->
     </bean>
 
     <!--    creating employees1-->
@@ -48,10 +53,11 @@
         <property name="branch" ref="branch1"/>
     </bean>
     <util:list id="employees1" value-type="com.shervinzadsoroor.models.Employee">
-        <value>employee1</value>
-        <value>employee2</value>
-        <value>employee3</value>
-        <value>employee4</value>
+        <ref bean="employee1"/>
+        <ref bean="employee2"/>
+        <ref bean="employee3"/>
+        <ref bean="employee4"/>
+
     </util:list>
 
     <!--    creating costumers1 and their accounts-->
@@ -70,7 +76,7 @@
         <property name="numOfWrongPassEntered" value="0"/>
         <property name="transactions" ref="transactionsOfAcc1ofCos1"/>
     </bean>
-    <bean id="tansaction1ofAccount1of1" class="com.shervinzadsoroor.models.Transaction">
+    <bean id="transaction1ofAccount1of1" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account1ofCos1"/>
         <property name="depositAmount" value="2000"/>
         <property name="description" value="first deposit"/>
@@ -78,7 +84,7 @@
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos1" value-type="com.shervinzadsoroor.models.Transaction">
-        <value>tansaction1ofAccount1of1</value>
+        <ref bean="transaction1ofAccount1of1"/>
     </util:list>
 
     <bean id="creditCardOfAcc1ofCos1" class="com.shervinzadsoroor.models.CreditCard">
@@ -108,7 +114,7 @@
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos1" value-type="com.shervinzadsoroor.models.Transaction">
-        <value>transaction1ofAccount2of1</value>
+        <ref bean="transaction1ofAccount2of1"/>
     </util:list>
     <bean id="creditCardOfAcc2ofCos1" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account2ofCos1"/>
@@ -120,8 +126,8 @@
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos1ofBranch1" value-type="com.shervinzadsoroor.models.Account">
-        <value>account1ofCos1</value>
-        <value>account2ofCos1</value>
+        <ref bean="account1ofCos1"/>
+        <ref bean="account2ofCos1"/>
     </util:list>
 
     <!--    creating second costumer of branch 1-->
@@ -149,7 +155,7 @@
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos2" value-type="com.shervinzadsoroor.models.Transaction">
-        <value>transaction1ofAccount1of2</value>
+        <ref bean="transaction1ofAccount1of2"/>
     </util:list>
 
     <bean id="creditCardOfAcc1ofCos2" class="com.shervinzadsoroor.models.CreditCard">
@@ -171,7 +177,7 @@
         <property name="numOfWrongPassEntered" value="0"/>
         <property name="transactions" ref="transactionsOfAcc2ofCos2"/>
     </bean>
-    <bean id="tansaction1ofAccount2of2" class="com.shervinzadsoroor.models.Transaction">
+    <bean id="transaction1ofAccount2of2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account2ofCos2"/>
         <property name="depositAmount" value="5500"/>
         <property name="description" value="first deposit"/>
@@ -179,7 +185,7 @@
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos2" value-type="com.shervinzadsoroor.models.Transaction">
-        <value>tansaction1ofAccount2of2</value>
+        <ref bean="transaction1ofAccount2of2"/>
     </util:list>
     <bean id="creditCardOfAcc2ofCos2" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account2ofCos2"/>
@@ -191,8 +197,8 @@
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos2ofBranch1" value-type="com.shervinzadsoroor.models.Account">
-        <value>account1ofCos2</value>
-        <value>account2ofCos2</value>
+        <ref bean="account1ofCos2"/>
+        <ref bean="account2ofCos2"/>
     </util:list>
 
 </beans>

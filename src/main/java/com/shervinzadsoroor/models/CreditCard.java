@@ -8,9 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class CreditCard implements Serializable {
     @Id
@@ -38,6 +38,9 @@ public class CreditCard implements Serializable {
 
     @OneToOne(mappedBy = "creditCard")
     private Account account; // one to one
+
+    public CreditCard() {
+    }
 
     public Long getId() {
         return id;

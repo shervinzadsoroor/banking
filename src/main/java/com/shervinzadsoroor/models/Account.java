@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class Account implements Serializable {
     @Id
@@ -38,6 +38,8 @@ public class Account implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private List<Transaction> transactions = new ArrayList<>(); // one to many
 
+    public Account() {
+    }
 
     public Long getId() {
         return id;

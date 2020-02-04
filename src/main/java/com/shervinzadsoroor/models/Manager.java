@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 public class Manager implements Serializable {
     @Id
@@ -30,6 +30,13 @@ public class Manager implements Serializable {
 
     @OneToMany(mappedBy = "manager")
     private List<Employee> employees = new ArrayList<>(); // one to many
+
+    public Manager() {
+    }
+
+    public Manager(Branch branch) {
+        this.branch = branch;
+    }
 
     public Long getId() {
         return id;
