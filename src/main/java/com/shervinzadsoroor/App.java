@@ -1,13 +1,9 @@
 package com.shervinzadsoroor;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import com.shervinzadsoroor.repositories.HibernateInit;
+
+public class App {
+    public static void main(String[] args) {
+        HibernateInit.init();
     }
 }
