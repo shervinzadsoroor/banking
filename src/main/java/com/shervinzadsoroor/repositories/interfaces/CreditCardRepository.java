@@ -17,5 +17,7 @@ public interface CreditCardRepository {
 
     void editSecondPass(Long cardId, Long newPass);
 
-    void cardToCard(Long originCardNumber, Long destinationCardNumber, Long amount);
+    void cardToCard(Long[] info);
+
+    Long[] cardToCardInfo();
 }

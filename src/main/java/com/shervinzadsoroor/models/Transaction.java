@@ -38,6 +38,15 @@ public class Transaction implements Serializable {
 
     public Transaction() {
     }
+     public Transaction(Long depositAmount, Long withdrawAmount,Date date, String description
+     ,boolean isSuccessful , Account account){
+        this.depositAmount = depositAmount;
+        this.withdrawAmount = withdrawAmount;
+        this.date = date;
+        this.description = description;
+        this.isSuccessful = isSuccessful;
+        this.account = account;
+     }
 
     public Long getId() {
         return id;

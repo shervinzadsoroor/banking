@@ -69,7 +69,7 @@
     </bean>
     <bean id="account1ofCos1" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer1ofBranch1"/>
-        <property name="balance" value="2000"/>
+        <property name="balance" value="10000000"/>
         <property name="creditCard" ref="creditCardOfAcc1ofCos1"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -77,7 +77,7 @@
     </bean>
     <bean id="transaction1ofAccount1of1" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account1ofCos1"/>
-        <property name="depositAmount" value="2000"/>
+        <property name="depositAmount" value="10000000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/2/1"/>
         <property name="successful" value="true"/>
@@ -99,7 +99,7 @@
 
     <bean id="account2ofCos1" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer1ofBranch1"/>
-        <property name="balance" value="3500"/>
+        <property name="balance" value="3500000"/>
         <property name="creditCard" ref="creditCardOfAcc2ofCos1"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -107,7 +107,7 @@
     </bean>
     <bean id="transaction1ofAccount2of1" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account2ofCos1"/>
-        <property name="depositAmount" value="3500"/>
+        <property name="depositAmount" value="3500000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/1/10"/>
         <property name="successful" value="true"/>
@@ -140,7 +140,7 @@
     </bean>
     <bean id="account1ofCos2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer2ofBranch1"/>
-        <property name="balance" value="2500"/>
+        <property name="balance" value="2500000"/>
         <property name="creditCard" ref="creditCardOfAcc1ofCos2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -148,7 +148,7 @@
     </bean>
     <bean id="transaction1ofAccount1of2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account1ofCos1"/>
-        <property name="depositAmount" value="2000"/>
+        <property name="depositAmount" value="2500000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/2/1"/>
         <property name="successful" value="true"/>
@@ -170,7 +170,7 @@
 
     <bean id="account2ofCos2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer2ofBranch1"/>
-        <property name="balance" value="3500"/>
+        <property name="balance" value="26000000"/>
         <property name="creditCard" ref="creditCardOfAcc2ofCos2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -178,7 +178,7 @@
     </bean>
     <bean id="transaction1ofAccount2of2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account2ofCos2"/>
-        <property name="depositAmount" value="5500"/>
+        <property name="depositAmount" value="26000000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/1/23"/>
         <property name="successful" value="true"/>
@@ -270,7 +270,7 @@
     </bean>
     <bean id="account1ofCos1Branch2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer1ofBranch2"/>
-        <property name="balance" value="32000"/>
+        <property name="balance" value="32000000"/>
         <property name="creditCard" ref="creditCardOfAcc1ofCos1Branch2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -278,7 +278,7 @@
     </bean>
     <bean id="transaction1ofAccount1ofCos1Branch2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account1ofCos1Branch2"/>
-        <property name="depositAmount" value="32000"/>
+        <property name="depositAmount" value="32000000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/2/1"/>
         <property name="successful" value="true"/>
@@ -300,7 +300,7 @@
 
     <bean id="account2ofCos1Branch2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer1ofBranch2"/>
-        <property name="balance" value="3500"/>
+        <property name="balance" value="35000000"/>
         <property name="creditCard" ref="creditCardOfAcc2ofCos1Branch2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -308,7 +308,7 @@
     </bean>
     <bean id="transaction1ofAccount2ofCos1Branch2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account2ofCos1Branch2"/>
-        <property name="depositAmount" value="3500"/>
+        <property name="depositAmount" value="35000000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/1/10"/>
         <property name="successful" value="true"/>
@@ -341,7 +341,7 @@
     </bean>
     <bean id="account1ofCos2Branch2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer2ofBranch2"/>
-        <property name="balance" value="7860"/>
+        <property name="balance" value="7860000"/>
         <property name="creditCard" ref="creditCardOfAcc1ofCos2Branch2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -349,7 +349,7 @@
     </bean>
     <bean id="transaction1ofAccount1ofCos2Branch2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account1ofCos2Branch2"/>
-        <property name="depositAmount" value="7860"/>
+        <property name="depositAmount" value="7860000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/1/24"/>
         <property name="successful" value="true"/>
@@ -371,7 +371,7 @@
 
     <bean id="account2ofCos2Branch2" class="com.shervinzadsoroor.models.Account">
         <property name="costumer" ref="costumer2ofBranch2"/>
-        <property name="balance" value="34500"/>
+        <property name="balance" value="34500000"/>
         <property name="creditCard" ref="creditCardOfAcc2ofCos2Branch2"/>
         <property name="active" value="true"/>
         <property name="numOfWrongPassEntered" value="0"/>
@@ -379,7 +379,7 @@
     </bean>
     <bean id="transaction1ofAccount2ofCos2Branch2" class="com.shervinzadsoroor.models.Transaction">
         <property name="account" ref="account2ofCos2Branch2"/>
-        <property name="depositAmount" value="34500"/>
+        <property name="depositAmount" value="34500000"/>
         <property name="description" value="first deposit"/>
         <property name="date" value="2020/1/10"/>
         <property name="successful" value="true"/>

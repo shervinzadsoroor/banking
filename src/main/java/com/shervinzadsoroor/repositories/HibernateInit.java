@@ -7,10 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.persistence.Query;
-
 public class HibernateInit {
-    public static void init() {
+    public void init() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -32,4 +30,15 @@ public class HibernateInit {
         session.getTransaction().commit();
         session.close();
     }
+
+    public void showServices() {
+        System.out.printf("+---------------------------------+\n" +
+                "|  1  -->    card to card         |\n" +
+                "|  2  -->    withdraw             |\n" +
+                "|  3  -->    deposit              |\n" +
+                "|  4  -->    show balance         |\n" +
+                "|  5  -->    password operations  |\n" +
+                "+---------------------------------+\n\n");
+    }
+
 }
