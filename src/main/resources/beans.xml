@@ -57,7 +57,6 @@
         <ref bean="employee2"/>
         <ref bean="employee3"/>
         <ref bean="employee4"/>
-
     </util:list>
 
     <!--    creating costumers1 and their accounts-->
@@ -201,5 +200,205 @@
         <ref bean="account2ofCos2"/>
     </util:list>
 
+
+    <!--    second branch ####################################################-->
+
+
+    <bean id="branch2" class="com.shervinzadsoroor.models.Branch">
+        <property name="name" value="fatemi"/>
+        <!--        <property name="manager" ref="manager1"/>-->
+        <constructor-arg ref="manager2"/>
+        <property name="employees" ref="employees2"/>
+        <!--        <constructor-arg ref="employees1"/>-->
+        <!--        <property name="costumers" ref="costumers1"/>-->
+        <!--                <constructor-arg ref="costumers1"/>-->
+        <property name="costumers" ref="costumers2"/>
+    </bean>
+    <util:list id="costumers2" value-type="com.shervinzadsoroor.models.Costumer">
+        <ref bean="costumer1ofBranch2"/>
+        <ref bean="costumer2ofBranch2"/>
+    </util:list>
+
+    <bean id="manager2" class="com.shervinzadsoroor.models.Manager">
+        <property name="firstName" value="koorosh"/>
+        <property name="lastName" value="shaad"/>
+        <!--        <property name="branch" ref="branch1"/>-->
+        <!--        <constructor-arg ref="branch1"/>-->
+        <!--        <property name="employees" ref="employees1"/>-->
+    </bean>
+
+    <!--    creating employees2-->
+    <bean id="employee1branch2" class="com.shervinzadsoroor.models.Employee">
+        <property name="firstName" value="hamid"/>
+        <property name="lastName" value="samaiy"/>
+        <property name="manager" ref="manager2"/>
+        <property name="branch" ref="branch2"/>
+    </bean>
+    <bean id="employee2branch2" class="com.shervinzadsoroor.models.Employee">
+        <property name="firstName" value="alireza"/>
+        <property name="lastName" value="fathi"/>
+        <property name="manager" ref="manager2"/>
+        <property name="branch" ref="branch2"/>
+    </bean>
+
+    <bean id="employee3branch2" class="com.shervinzadsoroor.models.Employee">
+        <property name="firstName" value="helia"/>
+        <property name="lastName" value="varasteh"/>
+        <property name="manager" ref="manager2"/>
+        <property name="branch" ref="branch2"/>
+    </bean>
+    <bean id="employee4branch2" class="com.shervinzadsoroor.models.Employee">
+        <property name="firstName" value="ramin"/>
+        <property name="lastName" value="hadian"/>
+        <property name="manager" ref="manager2"/>
+        <property name="branch" ref="branch2"/>
+    </bean>
+    <util:list id="employees2" value-type="com.shervinzadsoroor.models.Employee">
+        <ref bean="employee1branch2"/>
+        <ref bean="employee2branch2"/>
+        <ref bean="employee3branch2"/>
+        <ref bean="employee4branch2"/>
+    </util:list>
+
+    <!--    creating costumers1 and their accounts-->
+    <bean id="costumer1ofBranch2" class="com.shervinzadsoroor.models.Costumer">
+        <property name="firstName" value="samaneh"/>
+        <property name="lastName" value="darabi"/>
+        <property name="nationalCode" value="0065846463"/>
+        <property name="branch" ref="branch2"/>
+        <property name="accounts" ref="accountsOfCos1ofBranch2"/>
+    </bean>
+    <bean id="account1ofCos1Branch2" class="com.shervinzadsoroor.models.Account">
+        <property name="costumer" ref="costumer1ofBranch2"/>
+        <property name="balance" value="32000"/>
+        <property name="creditCard" ref="creditCardOfAcc1ofCos1Branch2"/>
+        <property name="active" value="true"/>
+        <property name="numOfWrongPassEntered" value="0"/>
+        <property name="transactions" ref="transactionsOfAcc1ofCos1Branch2"/>
+    </bean>
+    <bean id="transaction1ofAccount1ofCos1Branch2" class="com.shervinzadsoroor.models.Transaction">
+        <property name="account" ref="account1ofCos1Branch2"/>
+        <property name="depositAmount" value="32000"/>
+        <property name="description" value="first deposit"/>
+        <property name="date" value="2020/2/1"/>
+        <property name="successful" value="true"/>
+    </bean>
+    <util:list id="transactionsOfAcc1ofCos1Branch2" value-type="com.shervinzadsoroor.models.Transaction">
+        <ref bean="transaction1ofAccount1ofCos1Branch2"/>
+    </util:list>
+
+    <bean id="creditCardOfAcc1ofCos1Branch2" class="com.shervinzadsoroor.models.CreditCard">
+        <property name="account" ref="account1ofCos1Branch2"/>
+        <property name="cardNumber" value="6104337605874265"/>
+        <property name="CVV2" value="234"/>
+        <property name="firstPass" value="1111"/>
+        <property name="secondPass" value="1111"/>
+        <property name="expireDate" value="2022/12/12"/>
+        <property name="active" value="true"/>
+    </bean>
+
+
+    <bean id="account2ofCos1Branch2" class="com.shervinzadsoroor.models.Account">
+        <property name="costumer" ref="costumer1ofBranch2"/>
+        <property name="balance" value="3500"/>
+        <property name="creditCard" ref="creditCardOfAcc2ofCos1Branch2"/>
+        <property name="active" value="true"/>
+        <property name="numOfWrongPassEntered" value="0"/>
+        <property name="transactions" ref="transactionsOfAcc2ofCos1Branch2"/>
+    </bean>
+    <bean id="transaction1ofAccount2ofCos1Branch2" class="com.shervinzadsoroor.models.Transaction">
+        <property name="account" ref="account2ofCos1Branch2"/>
+        <property name="depositAmount" value="3500"/>
+        <property name="description" value="first deposit"/>
+        <property name="date" value="2020/1/10"/>
+        <property name="successful" value="true"/>
+    </bean>
+    <util:list id="transactionsOfAcc2ofCos1Branch2" value-type="com.shervinzadsoroor.models.Transaction">
+        <ref bean="transaction1ofAccount2ofCos1Branch2"/>
+    </util:list>
+    <bean id="creditCardOfAcc2ofCos1Branch2" class="com.shervinzadsoroor.models.CreditCard">
+        <property name="account" ref="account2ofCos1Branch2"/>
+        <property name="cardNumber" value="6104332424312787"/>
+        <property name="CVV2" value="543"/>
+        <property name="firstPass" value="1111"/>
+        <property name="secondPass" value="1111"/>
+        <property name="expireDate" value="2022/10/04"/>
+        <property name="active" value="true"/>
+    </bean>
+    <util:list id="accountsOfCos1ofBranch2" value-type="com.shervinzadsoroor.models.Account">
+        <ref bean="account1ofCos1Branch2"/>
+        <ref bean="account2ofCos1Branch2"/>
+    </util:list>
+
+    <!--    creating second costumer of branch 2-->
+
+    <bean id="costumer2ofBranch2" class="com.shervinzadsoroor.models.Costumer">
+        <property name="firstName" value="raha"/>
+        <property name="lastName" value="sadeghi"/>
+        <property name="nationalCode" value="3377098763"/>
+        <property name="branch" ref="branch2"/>
+        <property name="accounts" ref="accountsOfCos2ofBranch2"/>
+    </bean>
+    <bean id="account1ofCos2Branch2" class="com.shervinzadsoroor.models.Account">
+        <property name="costumer" ref="costumer2ofBranch2"/>
+        <property name="balance" value="7860"/>
+        <property name="creditCard" ref="creditCardOfAcc1ofCos2Branch2"/>
+        <property name="active" value="true"/>
+        <property name="numOfWrongPassEntered" value="0"/>
+        <property name="transactions" ref="transactionsOfAcc1ofCos2Branch2"/>
+    </bean>
+    <bean id="transaction1ofAccount1ofCos2Branch2" class="com.shervinzadsoroor.models.Transaction">
+        <property name="account" ref="account1ofCos2Branch2"/>
+        <property name="depositAmount" value="7860"/>
+        <property name="description" value="first deposit"/>
+        <property name="date" value="2020/1/24"/>
+        <property name="successful" value="true"/>
+    </bean>
+    <util:list id="transactionsOfAcc1ofCos2Branch2" value-type="com.shervinzadsoroor.models.Transaction">
+        <ref bean="transaction1ofAccount1ofCos2Branch2"/>
+    </util:list>
+
+    <bean id="creditCardOfAcc1ofCos2Branch2" class="com.shervinzadsoroor.models.CreditCard">
+        <property name="account" ref="account1ofCos2Branch2"/>
+        <property name="cardNumber" value="2341234605874265"/>
+        <property name="CVV2" value="678"/>
+        <property name="firstPass" value="1111"/>
+        <property name="secondPass" value="1111"/>
+        <property name="expireDate" value="2022/08/12"/>
+        <property name="active" value="true"/>
+    </bean>
+
+
+    <bean id="account2ofCos2Branch2" class="com.shervinzadsoroor.models.Account">
+        <property name="costumer" ref="costumer2ofBranch2"/>
+        <property name="balance" value="34500"/>
+        <property name="creditCard" ref="creditCardOfAcc2ofCos2Branch2"/>
+        <property name="active" value="true"/>
+        <property name="numOfWrongPassEntered" value="0"/>
+        <property name="transactions" ref="transactionsOfAcc2ofCos2Branch2"/>
+    </bean>
+    <bean id="transaction1ofAccount2ofCos2Branch2" class="com.shervinzadsoroor.models.Transaction">
+        <property name="account" ref="account2ofCos2Branch2"/>
+        <property name="depositAmount" value="34500"/>
+        <property name="description" value="first deposit"/>
+        <property name="date" value="2020/1/10"/>
+        <property name="successful" value="true"/>
+    </bean>
+    <util:list id="transactionsOfAcc2ofCos2Branch2" value-type="com.shervinzadsoroor.models.Transaction">
+        <ref bean="transaction1ofAccount2ofCos2Branch2"/>
+    </util:list>
+    <bean id="creditCardOfAcc2ofCos2Branch2" class="com.shervinzadsoroor.models.CreditCard">
+        <property name="account" ref="account2ofCos2Branch2"/>
+        <property name="cardNumber" value="6104221134212787"/>
+        <property name="CVV2" value="212"/>
+        <property name="firstPass" value="1111"/>
+        <property name="secondPass" value="1111"/>
+        <property name="expireDate" value="2022/02/04"/>
+        <property name="active" value="true"/>
+    </bean>
+    <util:list id="accountsOfCos2ofBranch2" value-type="com.shervinzadsoroor.models.Account">
+        <ref bean="account1ofCos2Branch2"/>
+        <ref bean="account2ofCos2Branch2"/>
+    </util:list>
 </beans>
 

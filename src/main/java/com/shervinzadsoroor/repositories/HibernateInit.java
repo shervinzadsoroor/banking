@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.persistence.Query;
+
 public class HibernateInit {
     public static void init() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -15,12 +17,17 @@ public class HibernateInit {
 
         System.out.println("\t\t******  welcome to banking application   ******");
 
-        ApplicationContext context =
-                new ClassPathXmlApplicationContext("beans.xml");
-        Branch branch1 = context.getBean("branch1", Branch.class);
-//        System.out.println(branch1.getName());
-//        System.out.println(branch1.getManager().toString());
-        session.save(branch1);
+        boolean isEmpty = session.createQuery("from Branch").list().isEmpty();
+
+        if (isEmpty) {
+            ApplicationContext context =
+                    new ClassPathXmlApplicationContext("beans.xml");
+            Branch branch1 = context.getBean("branch1", Branch.class);
+            session.save(branch1);
+
+            Branch branch2 = context.getBean("branch2", Branch.class);
+            session.save(branch2);
+        }
 
         session.getTransaction().commit();
         session.close();
