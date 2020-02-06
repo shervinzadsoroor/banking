@@ -7,6 +7,7 @@ import com.shervinzadsoroor.repositories.interfaces.Validations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.Query;
 import java.util.List;
 
 public class ValidationImpl implements Validations {
@@ -26,15 +27,14 @@ public class ValidationImpl implements Validations {
         Long amount = info[1];
         Long destinationCardNumber = info[2];
 
-        Long sourceCardId = null;
         List<Account> accountList;
 
         List<CreditCard> sourceCard = session.createQuery("from CreditCard where cardNumber=:number")
-                .setParameter("number", sourceCardNumber+"")
+                .setParameter("number", sourceCardNumber + "")
                 .list();
         if (sourceCard.size() > 0) {
             isSourceCardExist = true;
-           // sourceCardId = sourceCard.get(0).getId();
+
 
             accountList = session.createQuery("from Account where creditCard=:creditCard")
                     .setParameter("creditCard", sourceCard)
@@ -46,7 +46,7 @@ public class ValidationImpl implements Validations {
         }
 
         List<CreditCard> destinationCard = session.createQuery("from CreditCard where cardNumber=:number")
-                .setParameter("number", destinationCardNumber+"")
+                .setParameter("number", destinationCardNumber + "")
                 .list();
         if (destinationCard.size() > 0) {
             isDestinationCardExist = true;
@@ -69,15 +69,57 @@ public class ValidationImpl implements Validations {
         boolean isPasswordValid = false;
 
         List<CreditCard> sourceCardList = session.createQuery("from CreditCard where cardNumber=:number")
-                .setParameter("number", sourceCardNumber+"")
+                .setParameter("number", sourceCardNumber + "")
                 .list();
+        CreditCard creditCard = sourceCardList.get(0);
+
+        List<Account> accountList = session.createQuery("from Account where creditCard=:card")
+                .setParameter("card", creditCard)
+                .list();
+        Account account = accountList.get(0);
+
         int sourceCardPass = sourceCardList.get(0).getFirstPass();
         if (password == sourceCardPass) {
             isPasswordValid = true;
+        } else {
+            Query query = session.createQuery("update Account set numOfWrongPassEntered=:num" +
+                    " where id=:id")
+                    .setParameter("num", (account.getNumOfWrongPassEntered() + 1))
+                    .setParameter("id", account.getId());
+            query.executeUpdate();
+
+            session.refresh(account);
+            if (account.getNumOfWrongPassEntered() == 3) {
+                Query query1 = session.createQuery("update Account set isActive=false" +
+                        " where id=:id")
+                        .setParameter("id", account.getId());
+                query1.executeUpdate();
+            }
         }
 
         session.getTransaction().commit();
         session.close();
         return isPasswordValid;
+    }
+
+    @Override
+    public boolean isAccountActive(Long creditCardNumber) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        List<CreditCard> sourceCardList = session.createQuery("from CreditCard where cardNumber=:number")
+                .setParameter("number", creditCardNumber + "")
+                .list();
+        CreditCard creditCard = sourceCardList.get(0);
+
+        List<Account> accountList = session.createQuery("from Account where creditCard=:creditCard")
+                .setParameter("creditCard", creditCard)
+                .list();
+        Account account = accountList.get(0);
+
+        session.getTransaction().commit();
+        session.close();
+        return account.isActive();
     }
 }

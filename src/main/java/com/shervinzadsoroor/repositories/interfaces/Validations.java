@@ -4,4 +4,6 @@ public interface Validations {
     boolean isCardToCardInfoValid(Long[] info);
 
     boolean isPasswordValid(int password, Long sourceCardNumber);
+
+    boolean isAccountActive(Long creditCardNumber);
 }

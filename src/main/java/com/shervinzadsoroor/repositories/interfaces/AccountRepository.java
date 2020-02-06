@@ -13,7 +13,7 @@ public interface AccountRepository {
 
     void delete(Long accountId);
 
-    List<Account> findAll(Long CostumerId);
+    List<Account> findAll(Long costumerId);
 
     void deactivate(Long accountId);
 }

@@ -34,10 +34,12 @@ public class HibernateInit {
     public void showServices() {
         System.out.printf("+---------------------------------+\n" +
                 "|  1  -->    card to card         |\n" +
-                "|  2  -->    withdraw             |\n" +
-                "|  3  -->    deposit              |\n" +
-                "|  4  -->    show balance         |\n" +
-                "|  5  -->    password operations  |\n" +
+                "|  2  -->    show accounts        |\n" +
+                "|  3  -->    withdraw             |\n" +
+                "|  4  -->    deposit              |\n" +
+                "|  5  -->    show balance         |\n" +
+                "|  6  -->    password operations  |\n" +
+                "|  7  -->    admin operations     |\n" +
                 "+---------------------------------+\n\n");
     }
 
