@@ -17,6 +17,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
+
         <!--        mapping-->
         <mapping class="com.shervinzadsoroor.models.Account"/>
         <mapping class="com.shervinzadsoroor.models.Branch"/>

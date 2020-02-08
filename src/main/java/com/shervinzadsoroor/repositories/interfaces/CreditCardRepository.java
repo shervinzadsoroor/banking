@@ -1,5 +1,6 @@
 package com.shervinzadsoroor.repositories.interfaces;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.shervinzadsoroor.models.CreditCard;
 
 public interface CreditCardRepository {
@@ -11,13 +12,15 @@ public interface CreditCardRepository {
 
     void delete(Long cardId);
 
-    void editFirstPass(Long cardId, Long newPass);
+    void changeFirstPass(String newPass) throws JsonProcessingException;
 
-    void assignSecondPass(Long cardId, Long secondPass);
+    void assignSecondPass(String idStr) throws JsonProcessingException;
 
-    void editSecondPass(Long cardId, Long newPass);
+    void editSecondPass(String jsonSecondPass) throws JsonProcessingException;
 
-    void cardToCard(Long[] info);
+    void cardToCard(String info) throws JsonProcessingException;
 
-    Long[] cardToCardInfo();
+    String cardToCardInfo() throws JsonProcessingException;
+
+    boolean isPasswordValid(String idAndPass) throws JsonProcessingException;
 }

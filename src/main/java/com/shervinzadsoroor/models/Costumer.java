@@ -1,17 +1,11 @@
 package com.shervinzadsoroor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
+
 @Entity
 public class Costumer implements Serializable {
 

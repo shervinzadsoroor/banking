@@ -1,5 +1,7 @@
 package com.shervinzadsoroor.repositories.impls;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.shervinzadsoroor.hibernateConfig.HibernateUtil;
 import com.shervinzadsoroor.models.Account;
 import com.shervinzadsoroor.models.CreditCard;
@@ -9,23 +11,28 @@ import org.hibernate.SessionFactory;
 
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Map;
 
 public class ValidationImpl implements Validations {
     @Override
-    public boolean isCardToCardInfoValid(Long[] info) {
+    public boolean isCardToCardInfoValid(String info) throws JsonProcessingException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        boolean isInfoValid = false;
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(info, Map.class);
 
+        boolean isInfoValid = false;
         boolean isSourceCardExist = false;
         boolean isAmountValid = false;
         boolean isDestinationCardExist = false;
 
-        Long sourceCardNumber = info[0];
-        Long amount = info[1];
-        Long destinationCardNumber = info[2];
+
+        Long sourceCardNumber = (Long) map.get("sourceNumber");
+        Long amount = Long.parseLong(map.get("amount") + "");
+        Long destinationCardNumber = (Long) map.get("destination");
+
 
         List<Account> accountList;
 
@@ -37,7 +44,7 @@ public class ValidationImpl implements Validations {
 
 
             accountList = session.createQuery("from Account where creditCard=:creditCard")
-                    .setParameter("creditCard", sourceCard)
+                    .setParameter("creditCard", sourceCard.get(0))
                     .list();
             Long balance = accountList.get(0).getBalance();
             if (amount <= (balance - 5000)) {
@@ -62,11 +69,15 @@ public class ValidationImpl implements Validations {
     }
 
     @Override
-    public boolean isPasswordValid(int password, Long sourceCardNumber) {
+    public boolean isPasswordValid(int password, String info) throws JsonProcessingException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         boolean isPasswordValid = false;
+
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(info,Map.class);
+        Long sourceCardNumber = (Long) map.get("sourceNumber");
 
         List<CreditCard> sourceCardList = session.createQuery("from CreditCard where cardNumber=:number")
                 .setParameter("number", sourceCardNumber + "")
@@ -103,10 +114,14 @@ public class ValidationImpl implements Validations {
     }
 
     @Override
-    public boolean isAccountActive(Long creditCardNumber) {
+    public boolean isAccountActive(String info) throws JsonProcessingException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(info, Map.class);
+        Long creditCardNumber = (Long) map.get("sourceNumber");
 
         List<CreditCard> sourceCardList = session.createQuery("from CreditCard where cardNumber=:number")
                 .setParameter("number", creditCardNumber + "")

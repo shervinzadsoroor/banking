@@ -1,5 +1,7 @@
 package com.shervinzadsoroor.repositories.impls;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.shervinzadsoroor.hibernateConfig.HibernateUtil;
 import com.shervinzadsoroor.models.Account;
 import com.shervinzadsoroor.models.CreditCard;
@@ -9,12 +11,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import javax.persistence.Query;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Timer;
+
 
 public class CreditCardRepositoryImpl implements CreditCardRepository {
     @Override
@@ -38,31 +42,100 @@ public class CreditCardRepositoryImpl implements CreditCardRepository {
     }
 
     @Override
-    public void editFirstPass(Long cardId, Long newPass) {
+    public void changeFirstPass(String newPassStr) throws JsonProcessingException {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(newPassStr, Map.class);
+
+        Long accountId = Long.parseLong(map.get("id") + "");
+        int newPass = (Integer) (map.get("pass"));
+
+        Account account = session.load(Account.class, accountId);
+        Long cardId = account.getCreditCard().getId();
+
+        CreditCard creditCard = session.load(CreditCard.class, cardId);
+        creditCard.setFirstPass(newPass);
+
+        session.update(creditCard);
+
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
-    public void assignSecondPass(Long cardId, Long secondPass) {
+    public void assignSecondPass(String idStr) throws JsonProcessingException {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Scanner scanner = new Scanner(System.in);
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(idStr, Map.class);
 
+        Long accountId = Long.parseLong(map.get("id") + "");
+
+        Account account = session.load(Account.class, accountId);
+        Long cardId = account.getCreditCard().getId();
+
+        CreditCard creditCard = session.load(CreditCard.class, cardId);
+        String secondPass = creditCard.getSecondPass();
+        if (secondPass == null) {
+            System.out.println("enter second password: ");
+            String pass1 = scanner.nextLine();
+            System.out.println("enter second password again:");
+            String pass2 = scanner.nextLine();
+            if (pass1.equals(pass2)) {
+                creditCard.setSecondPass(pass1);
+                session.update(creditCard);
+            }
+        } else {
+            System.out.println("your account has already a second password !");
+        }
+
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
-    public void editSecondPass(Long cardId, Long newPass) {
+    public void editSecondPass(String jsonSecondPass) throws JsonProcessingException {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(jsonSecondPass, Map.class);
+
+        Long accountId = Long.parseLong(map.get("id") + "");
+        String secondPass = map.get("pass") + "";
+
+        Account account = session.load(Account.class, accountId);
+        Long cardId = account.getCreditCard().getId();
+
+        CreditCard creditCard = session.load(CreditCard.class, cardId);
+        creditCard.setSecondPass(secondPass);
+
+        session.update(creditCard);
+
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
-    public void cardToCard(Long[] info) {
+    public void cardToCard(String info) throws JsonProcessingException {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
         Account sourceAccount = null;
         Account destinationAccount = null;
-        Long sourceCardNumber = info[0];
-        Long amount = info[1];
-        Long destinationCardNumber = info[2];
+
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(info, Map.class);
+        Long sourceCardNumber = (Long) map.get("sourceNumber");
+        Long amount = Long.parseLong(map.get("amount") + "");
+        Long destinationCardNumber = (Long) map.get("destination");
 
         List<CreditCard> sourceCardList = session.createQuery("from CreditCard where cardNumber=:number")
                 .setParameter("number", sourceCardNumber + "")
@@ -129,10 +202,12 @@ public class CreditCardRepositoryImpl implements CreditCardRepository {
                 + sourceAccountCostumerName + " with credit card number " + sourceCardNumber
                 + " in " + dateAndTime;
 
-        Transaction sourceTransaction = new Transaction(null, (amount + 5000L), null,
+        String date = LocalDate.now().toString();
+
+        Transaction sourceTransaction = new Transaction(null, (amount + 5000L), date,
                 sourceTransactionDescription, true, sourceAccount);
 
-        Transaction destinationTransaction = new Transaction(amount, null, null,
+        Transaction destinationTransaction = new Transaction(amount, null, date,
                 destinationTransactionDescription, true, destinationAccount);
 
         session.save(sourceTransaction);
@@ -143,12 +218,13 @@ public class CreditCardRepositoryImpl implements CreditCardRepository {
     }
 
     @Override
-    public Long[] cardToCardInfo() {
+    public String cardToCardInfo() throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
-        Long[] info = new Long[3];
+        JsonMapper mapper = new JsonMapper();
+        Map<String, Long> infoMapper = new HashMap<>();
 
         System.out.println("enter source card number: ");
-        info[0] = scanner.nextLong();
+        Long sourceNumber = scanner.nextLong();
 
         System.out.println("enter amount(Rials): ");
         Long amount = 0L;
@@ -160,10 +236,44 @@ public class CreditCardRepositoryImpl implements CreditCardRepository {
                 System.out.println("invalid amount!!!(enter 1 to 30'000'000 rials): ");
             }
         }
-        info[1] = amount;
         System.out.println("enter destination card number: ");
-        info[2] = scanner.nextLong();
+        Long destinationNumber = scanner.nextLong();
 
-        return info;
+        infoMapper.put("sourceNumber", sourceNumber);
+        infoMapper.put("amount", amount);
+        infoMapper.put("destination", destinationNumber);
+
+        String JsonString = mapper.writeValueAsString(infoMapper);
+
+        String cardsInto = "{\"source\":123,\"amount\":23,\"destination\":234324}";
+        return JsonString;
+    }
+
+    @Override
+    public boolean isPasswordValid(String idAndPass) throws JsonProcessingException {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        JsonMapper mapper = new JsonMapper();
+        Map map = mapper.readValue(idAndPass, Map.class);
+
+        Long accountId = Long.parseLong(map.get("id") + "");
+        Long password = Long.parseLong(map.get("pass") + "");
+
+        boolean isPassValid = false;
+        List<Account> accounts = session.createQuery("from Account where id=:id")
+                .setParameter("id", accountId)
+                .list();
+        if (accounts.size() > 0) {
+            Account account = accounts.get(0);
+            if (account.getCreditCard().getFirstPass() == password) {
+                isPassValid = true;
+            }
+        }
+
+        session.getTransaction().commit();
+        session.close();
+        return isPassValid;
     }
 }

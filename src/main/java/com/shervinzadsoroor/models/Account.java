@@ -1,17 +1,11 @@
 package com.shervinzadsoroor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
+
 @Entity
 public class Account implements Serializable {
     @Id
@@ -39,6 +33,14 @@ public class Account implements Serializable {
     private List<Transaction> transactions = new ArrayList<>(); // one to many
 
     public Account() {
+    }
+
+    public Account(Long balance, Costumer costumer, CreditCard creditCard) {
+        this.balance = balance;
+        isActive = true;
+        numOfWrongPassEntered = 0;
+        this.costumer = costumer;
+        this.creditCard = creditCard;
     }
 
     public Long getId() {

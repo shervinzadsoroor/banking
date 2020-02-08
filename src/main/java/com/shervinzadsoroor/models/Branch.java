@@ -1,18 +1,10 @@
 package com.shervinzadsoroor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.config.ListFactoryBean;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
 @Entity
 public class Branch implements Serializable {
     @Id

@@ -1,16 +1,9 @@
 package com.shervinzadsoroor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
 @Entity
 public class Transaction implements Serializable {
     @Id
@@ -25,7 +18,7 @@ public class Transaction implements Serializable {
     private Long withdrawAmount;
 
     @Column
-    private Date date;
+    private String date;
 
     @Column
     private String description;
@@ -38,7 +31,7 @@ public class Transaction implements Serializable {
 
     public Transaction() {
     }
-     public Transaction(Long depositAmount, Long withdrawAmount,Date date, String description
+     public Transaction(Long depositAmount, Long withdrawAmount,String date, String description
      ,boolean isSuccessful , Account account){
         this.depositAmount = depositAmount;
         this.withdrawAmount = withdrawAmount;
@@ -72,11 +65,11 @@ public class Transaction implements Serializable {
         this.withdrawAmount = withdrawAmount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

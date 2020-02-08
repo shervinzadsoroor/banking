@@ -1,11 +1,12 @@
 package com.shervinzadsoroor.repositories.interfaces;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.shervinzadsoroor.models.Account;
 
 import java.util.List;
 
 public interface AccountRepository {
-    void create();
+    Long create(String info) throws JsonProcessingException;
 
     Account retrieve(Long accountId);
 
@@ -13,7 +14,15 @@ public interface AccountRepository {
 
     void delete(Long accountId);
 
-    List<Account> findAll(Long costumerId);
+    List<Account> findAll(String id) throws JsonProcessingException;
 
     void deactivate(Long accountId);
+
+    public String getCreateAccountInfo() throws JsonProcessingException;
+
+    String generateCreditCardNumber();
+
+    int generateCVV2();
+
+
 }

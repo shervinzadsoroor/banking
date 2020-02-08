@@ -1,9 +1,11 @@
 package com.shervinzadsoroor.repositories.interfaces;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 public interface Validations {
-    boolean isCardToCardInfoValid(Long[] info);
+    boolean isCardToCardInfoValid(String info) throws JsonProcessingException;
 
-    boolean isPasswordValid(int password, Long sourceCardNumber);
+    boolean isPasswordValid(int password, String info) throws JsonProcessingException;
 
-    boolean isAccountActive(Long creditCardNumber);
+    boolean isAccountActive(String info) throws JsonProcessingException;
 }

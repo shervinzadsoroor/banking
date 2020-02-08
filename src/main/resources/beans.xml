@@ -5,12 +5,8 @@
 
     <bean id="branch1" class="com.shervinzadsoroor.models.Branch">
         <property name="name" value="azadi"/>
-        <!--        <property name="manager" ref="manager1"/>-->
         <constructor-arg ref="manager1"/>
         <property name="employees" ref="employees1"/>
-        <!--        <constructor-arg ref="employees1"/>-->
-        <!--        <property name="costumers" ref="costumers1"/>-->
-        <!--                <constructor-arg ref="costumers1"/>-->
         <property name="costumers" ref="costumers1"/>
     </bean>
     <util:list id="costumers1" value-type="com.shervinzadsoroor.models.Costumer">
@@ -21,9 +17,6 @@
     <bean id="manager1" class="com.shervinzadsoroor.models.Manager">
         <property name="firstName" value="ali"/>
         <property name="lastName" value="rahmani"/>
-        <!--        <property name="branch" ref="branch1"/>-->
-        <!--        <constructor-arg ref="branch1"/>-->
-        <!--        <property name="employees" ref="employees1"/>-->
     </bean>
 
     <!--    creating employees1-->
@@ -79,7 +72,7 @@
         <property name="account" ref="account1ofCos1"/>
         <property name="depositAmount" value="10000000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/2/1"/>
+        <property name="date" value="2020-02-01"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos1" value-type="com.shervinzadsoroor.models.Transaction">
@@ -91,8 +84,7 @@
         <property name="cardNumber" value="6104337605874265"/>
         <property name="CVV2" value="234"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/12/12"/>
+        <property name="expireDate" value="2023-12-12"/>
         <property name="active" value="true"/>
     </bean>
 
@@ -109,7 +101,7 @@
         <property name="account" ref="account2ofCos1"/>
         <property name="depositAmount" value="3500000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/1/10"/>
+        <property name="date" value="2020-01-10"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos1" value-type="com.shervinzadsoroor.models.Transaction">
@@ -120,8 +112,7 @@
         <property name="cardNumber" value="6104337605878787"/>
         <property name="CVV2" value="124"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/10/12"/>
+        <property name="expireDate" value="2023-10-12"/>
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos1ofBranch1" value-type="com.shervinzadsoroor.models.Account">
@@ -150,7 +141,7 @@
         <property name="account" ref="account1ofCos1"/>
         <property name="depositAmount" value="2500000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/2/1"/>
+        <property name="date" value="2020-02-01"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -162,8 +153,7 @@
         <property name="cardNumber" value="6104337651514872"/>
         <property name="CVV2" value="984"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/12/24"/>
+        <property name="expireDate" value="2023-12-24"/>
         <property name="active" value="true"/>
     </bean>
 
@@ -180,7 +170,7 @@
         <property name="account" ref="account2ofCos2"/>
         <property name="depositAmount" value="26000000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/1/23"/>
+        <property name="date" value="2020-01-23"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -191,8 +181,7 @@
         <property name="cardNumber" value="6104337605871002"/>
         <property name="CVV2" value="124"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/02/30"/>
+        <property name="expireDate" value="2023-02-30"/>
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos2ofBranch1" value-type="com.shervinzadsoroor.models.Account">
@@ -206,12 +195,8 @@
 
     <bean id="branch2" class="com.shervinzadsoroor.models.Branch">
         <property name="name" value="fatemi"/>
-        <!--        <property name="manager" ref="manager1"/>-->
         <constructor-arg ref="manager2"/>
         <property name="employees" ref="employees2"/>
-        <!--        <constructor-arg ref="employees1"/>-->
-        <!--        <property name="costumers" ref="costumers1"/>-->
-        <!--                <constructor-arg ref="costumers1"/>-->
         <property name="costumers" ref="costumers2"/>
     </bean>
     <util:list id="costumers2" value-type="com.shervinzadsoroor.models.Costumer">
@@ -222,9 +207,6 @@
     <bean id="manager2" class="com.shervinzadsoroor.models.Manager">
         <property name="firstName" value="koorosh"/>
         <property name="lastName" value="shaad"/>
-        <!--        <property name="branch" ref="branch1"/>-->
-        <!--        <constructor-arg ref="branch1"/>-->
-        <!--        <property name="employees" ref="employees1"/>-->
     </bean>
 
     <!--    creating employees2-->
@@ -280,7 +262,7 @@
         <property name="account" ref="account1ofCos1Branch2"/>
         <property name="depositAmount" value="32000000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/2/1"/>
+        <property name="date" value="2020-02-01"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos1Branch2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -289,11 +271,10 @@
 
     <bean id="creditCardOfAcc1ofCos1Branch2" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account1ofCos1Branch2"/>
-        <property name="cardNumber" value="6104337605874265"/>
+        <property name="cardNumber" value="6104337699008976"/>
         <property name="CVV2" value="234"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/12/12"/>
+        <property name="expireDate" value="2023-12-12"/>
         <property name="active" value="true"/>
     </bean>
 
@@ -310,7 +291,7 @@
         <property name="account" ref="account2ofCos1Branch2"/>
         <property name="depositAmount" value="35000000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/1/10"/>
+        <property name="date" value="2020-01-10"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos1Branch2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -318,11 +299,10 @@
     </util:list>
     <bean id="creditCardOfAcc2ofCos1Branch2" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account2ofCos1Branch2"/>
-        <property name="cardNumber" value="6104332424312787"/>
+        <property name="cardNumber" value="6104337699656541"/>
         <property name="CVV2" value="543"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/10/04"/>
+        <property name="expireDate" value="2023-10-04"/>
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos1ofBranch2" value-type="com.shervinzadsoroor.models.Account">
@@ -351,7 +331,7 @@
         <property name="account" ref="account1ofCos2Branch2"/>
         <property name="depositAmount" value="7860000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/1/24"/>
+        <property name="date" value="2020-01-24"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc1ofCos2Branch2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -360,11 +340,10 @@
 
     <bean id="creditCardOfAcc1ofCos2Branch2" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account1ofCos2Branch2"/>
-        <property name="cardNumber" value="2341234605874265"/>
+        <property name="cardNumber" value="6104337600032145"/>
         <property name="CVV2" value="678"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/08/12"/>
+        <property name="expireDate" value="2023-08-12"/>
         <property name="active" value="true"/>
     </bean>
 
@@ -381,7 +360,7 @@
         <property name="account" ref="account2ofCos2Branch2"/>
         <property name="depositAmount" value="34500000"/>
         <property name="description" value="first deposit"/>
-        <property name="date" value="2020/1/10"/>
+        <property name="date" value="2020-01-10"/>
         <property name="successful" value="true"/>
     </bean>
     <util:list id="transactionsOfAcc2ofCos2Branch2" value-type="com.shervinzadsoroor.models.Transaction">
@@ -389,11 +368,10 @@
     </util:list>
     <bean id="creditCardOfAcc2ofCos2Branch2" class="com.shervinzadsoroor.models.CreditCard">
         <property name="account" ref="account2ofCos2Branch2"/>
-        <property name="cardNumber" value="6104221134212787"/>
+        <property name="cardNumber" value="6104337633322145"/>
         <property name="CVV2" value="212"/>
         <property name="firstPass" value="1111"/>
-        <property name="secondPass" value="1111"/>
-        <property name="expireDate" value="2022/02/04"/>
+        <property name="expireDate" value="2022-02-04"/>
         <property name="active" value="true"/>
     </bean>
     <util:list id="accountsOfCos2ofBranch2" value-type="com.shervinzadsoroor.models.Account">

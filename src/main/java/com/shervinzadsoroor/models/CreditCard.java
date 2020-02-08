@@ -1,16 +1,10 @@
 package com.shervinzadsoroor.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
+
 @Entity
 public class CreditCard implements Serializable {
     @Id
@@ -22,10 +16,10 @@ public class CreditCard implements Serializable {
     private String cardNumber;
 
     @Column
-
     private int firstPass;
+
     @Column
-    private int secondPass;
+    private String secondPass;
 
     @Column
     private boolean isActive;
@@ -34,12 +28,20 @@ public class CreditCard implements Serializable {
     private int CVV2;
 
     @Column
-    private Date expireDate;
+    private String expireDate;
 
     @OneToOne(mappedBy = "creditCard")
     private Account account; // one to one
 
     public CreditCard() {
+    }
+
+    public CreditCard(String cardNumber, int CVV2, String expireDate) {
+        this.cardNumber = cardNumber;
+        firstPass = 1111;
+        isActive = true;
+        this.CVV2 = CVV2;
+        this.expireDate = expireDate;
     }
 
     public Long getId() {
@@ -66,11 +68,11 @@ public class CreditCard implements Serializable {
         this.firstPass = firstPass;
     }
 
-    public int getSecondPass() {
+    public String getSecondPass() {
         return secondPass;
     }
 
-    public void setSecondPass(int secondPass) {
+    public void setSecondPass(String secondPass) {
         this.secondPass = secondPass;
     }
 
@@ -90,11 +92,11 @@ public class CreditCard implements Serializable {
         this.CVV2 = CVV2;
     }
 
-    public Date getExpireDate() {
+    public String getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(Date expireDate) {
+    public void setExpireDate(String expireDate) {
         this.expireDate = expireDate;
     }
 
