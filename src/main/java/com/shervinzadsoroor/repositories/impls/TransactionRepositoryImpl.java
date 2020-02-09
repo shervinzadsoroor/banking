@@ -1,7 +1,6 @@
 package com.shervinzadsoroor.repositories.impls;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.shervinzadsoroor.hibernateConfig.HibernateUtil;
 import com.shervinzadsoroor.models.Account;
 import com.shervinzadsoroor.models.Transaction;
@@ -13,7 +12,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
@@ -58,13 +56,6 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-//        JsonMapper mapper = new JsonMapper();
-//        Map map = mapper.readValue(jsonSearchTransaction, Map.class);
-
-//        Long accountId = Long.parseLong(map.get("id") + "");
-//        String strDate = map.get("date") + "";
-
 
         Account account = session.load(Account.class, accountId);
 
